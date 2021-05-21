@@ -13,7 +13,7 @@ import project.hrms.business.abstracts.SeekerService;
 import project.hrms.entities.concretes.Seeker;
 
 @RestController
-@RequestMapping("/api/Seeker")
+@RequestMapping("/api/seeker")
 public class SeekerController {
 
     private SeekerService seekerService;
@@ -24,11 +24,10 @@ public class SeekerController {
         this.seekerService = seekerService;
     }
 
-    @PostMapping("/addSeeker")
-    public ResponseEntity<Seeker> addSeeker(@RequestBody Seeker seeker){
-        Seeker newSeeker = seekerService.addSeeker(seeker);
-        return new ResponseEntity<>(newSeeker, HttpStatus.CREATED);
-    }
+    @PostMapping("/save")
+    public ResponseEntity<?> add(@RequestBody Seeker seeker){
+    	return this.seekerService.add(seeker);    }
+        
 	
 	@PostMapping("/addAllSeekers")
 	public ResponseEntity<List<Seeker>> addAllSeekers(@RequestBody List<Seeker> seekers){

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.hrms.business.abstracts.EmployerService;
-import project.hrms.business.abstracts.UserCheckService;
 import project.hrms.entities.concretes.Employer;
 
 @RestController
@@ -20,13 +19,13 @@ import project.hrms.entities.concretes.Employer;
 public class EmployerController {
 
 	private EmployerService employerService;
-	private UserCheckService userCheckService;
+	
 
 	@Autowired
-	public EmployerController(EmployerService employerService, UserCheckService userCheckService) {
+	public EmployerController(EmployerService employerService) {
 		super();
 		this.employerService = employerService;
-		this.userCheckService= userCheckService;
+		
 	}
 	
 	@GetMapping("/getAll")
@@ -36,13 +35,8 @@ public class EmployerController {
 	
 	@PostMapping("/addEmployer")
     public ResponseEntity<Employer> addEmployee(@RequestBody Employer employer) throws Exception{
-		if(userCheckService.CheckIfRealPerson(employer)) {
 			Employer newEmployer = this.employerService.addEmployer(employer);
 			return new ResponseEntity<>(newEmployer, HttpStatus.CREATED);
-		}else {
-			throw new Exception("Not a valid person");
-		}
-		
 		
     }
 	
