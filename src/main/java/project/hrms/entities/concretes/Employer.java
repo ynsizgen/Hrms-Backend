@@ -1,9 +1,9 @@
 package project.hrms.entities.concretes;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-
+import lombok.NoArgsConstructor;
 import project.hrms.entities.abstracts.Entities;
 import java.util.List;
 import javax.persistence.*;
@@ -11,6 +11,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "Employers")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employer extends User implements Entities {
 
 	

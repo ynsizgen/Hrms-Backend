@@ -1,15 +1,15 @@
-package project.hrms.core.concreats;
+package project.hrms.core.mernis.concreates;
 
 import java.util.Locale;
 
 import org.springframework.stereotype.Service;
 
-import project.hrms.core.abstracts.MernisCheckService;
+
 import project.hrms.entities.concretes.Seeker;
 import project.hrms.mernisService.KAWKPSPublicSoap;
 
 @Service
-public class MernisCheckManagerAdapter implements MernisCheckService {
+public class MernisCheckManagerAdapter implements project.hrms.core.mernis.abstracts.MernisCheckService {
 	
 	private KAWKPSPublicSoap kawkpsPublicSoap = new KAWKPSPublicSoap();
 	

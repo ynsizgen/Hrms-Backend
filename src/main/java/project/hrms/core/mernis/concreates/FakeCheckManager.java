@@ -1,13 +1,13 @@
-package project.hrms.core.concreats;
+package project.hrms.core.mernis.concreates;
 
 import org.springframework.stereotype.Service;
 
-import project.hrms.core.abstracts.FakeCheckService;
+
 
 import project.hrms.entities.concretes.Seeker;
 
 @Service
-public class FakeCheckManager implements FakeCheckService{
+public class FakeCheckManager implements project.hrms.core.mernis.abstracts.FakeCheckService{
 	
 	@Override
 	public boolean userCheck(Seeker seeker) {

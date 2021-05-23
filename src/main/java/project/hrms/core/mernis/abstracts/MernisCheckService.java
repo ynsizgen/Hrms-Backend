@@ -1,4 +1,4 @@
-package project.hrms.core.abstracts;
+package project.hrms.core.mernis.abstracts;
 
 import project.hrms.entities.concretes.Seeker;
 

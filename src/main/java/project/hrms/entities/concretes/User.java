@@ -10,13 +10,17 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import antlr.collections.List;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import project.hrms.entities.abstracts.Entities;
 
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class User implements Entities {
 	
 	@Id
@@ -24,7 +28,7 @@ public abstract class User implements Entities {
 	@Column(name = "id",nullable = false, updatable = false)
 	private int id;
 	
-	@Column(name = "email", unique = true, nullable = false)
+	@Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "password",length = 25, nullable = false)

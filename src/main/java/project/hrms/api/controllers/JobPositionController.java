@@ -16,7 +16,6 @@ import project.hrms.business.abstracts.JobPositionService;
 import project.hrms.entities.concretes.JobPosition;
 
 
-
 @RestController
 @RequestMapping("/api/jobPosition")
 public class JobPositionController {
