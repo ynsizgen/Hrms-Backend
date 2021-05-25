@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import project.hrms.business.abstracts.MainVerificationService;
 import project.hrms.business.abstracts.SeekerService;
-import project.hrms.business.abstracts.VerificationService;
+import project.hrms.business.abstracts.SeekerVerificationService;
 import project.hrms.core.mernis.abstracts.FakeCheckService;
 import project.hrms.core.mernis.abstracts.MernisCheckService;
 import project.hrms.core.utilities.results.DataResult;
@@ -20,59 +22,55 @@ import project.hrms.entities.concretes.Seeker;
 public class SeekerManager implements SeekerService {
 	private SeekerDao seekerDao;
 	private MernisCheckService mernisCheckService;
-	private VerificationService verificationService;
+	private SeekerVerificationService seekerVerificationService;
 	private FakeCheckService fakeCheckService;
+	private MainVerificationService mainVerificationManager;
 
 	@Autowired
-	public SeekerManager(SeekerDao seekerDao, MernisCheckService mernisCheckService,
-			VerificationService verificationService, FakeCheckService fakeCheckService) {
+	public SeekerManager(SeekerDao seekerDao, MernisCheckService mernisCheckService, SeekerVerificationService seekerVerificationService,
+			 FakeCheckService fakeCheckService, MainVerificationService mainVerificationManager ) {
 		super();
 		this.seekerDao = seekerDao;
 		this.mernisCheckService = mernisCheckService;
-		this.verificationService = verificationService;
+		this.seekerVerificationService = seekerVerificationService;
 		this.fakeCheckService = fakeCheckService;
+		this.mainVerificationManager = mainVerificationManager;
 	}
 
 	@Override
 	public Result add(Seeker seeker) {
 
-		DataResult<List<Seeker>> seekers = getAll();
-		List<Seeker> allSeekers = seekers.getData();
-		
-		if (!verificationService.isNationalityIdUnique(seeker, allSeekers)) {
+		if (seekerDao.findAllByNationalityId(seeker.getNationalityId()).stream().count() != 0 ) {
+
 			return new ErrorResult("Tckno kullanılıyor");
-		}else if (!verificationService.isEmailUnique(seeker, allSeekers)) {
+
+		} else if (seekerDao.findAllByEmail(seeker.getEmail()).stream().count() != 0 ) {
+
 			return new ErrorResult("Bu Email kullanılıyor");
+
+		} else if (!mainVerificationManager.isEmailValid(seeker)) {
+
+			return new ErrorResult("Bu Email formatı hatalı");
+
+		} else if (!mainVerificationManager.passwordCheck(seeker)) {
+
+			return new ErrorResult("Şifre en az 6 haneli olmalı!");
+
+		} else if (!seekerVerificationService.isNameAndSurnameValid(seeker)) {
+			
+			return new ErrorResult("Ad soyad en az 2 haneli olmalı.");
+			
+			//mernis fake or real
+		}else if (!mernisCheckService.userCheck(seeker)) {
+			
+			return new ErrorResult("Mernis onaylamadı.");
+			
 		} else {
-			if (verificationService.passwordCheck(seeker) && verificationService.inputsCheck(seeker)) {
-				if (mernisCheckService.userCheck(seeker)) {
-					this.seekerDao.save(seeker);
-					return new SuccessResult("Seeker eklendi.");
-				} else {
-					return new ErrorResult("Mernis onaylamadı.");
-				}
-			} else {
-				return new ErrorResult("Şifre en az 6 haneli olmalı. Ad soyad en az 2 haneli olmalı");
-			}
+			
+			this.seekerDao.save(seeker);
+			return new SuccessResult("Seeker eklendi.");	
 		}
 
-		/*
-		 * if (!verificationService.isEmailUnique(seeker, allSeekers)) { return new
-		 * ErrorResult("Bu Email kullanılıyor"); } else {
-		 * 
-		 * if (verificationService.passwordCheck(seeker) &&
-		 * verificationService.inputsCheck(seeker)) { if
-		 * (fakeCheckService.userCheck(seeker)) { this.seekerDao.save(seeker); return
-		 * new SuccessResult("Ürün eklendi."); } else { return new
-		 * ErrorResult("Mernis onaylamadı."); } } else { return new
-		 * ErrorResult("Şifre en az 6 haneli olmalı. Ad soyad en az 2 haneli olmalı. ");
-		 * } }
-		 */
-	}
-
-	@Override
-	public List<Seeker> addAllSeekers(List<Seeker> seekers) {
-		return seekerDao.saveAll(seekers);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import antlr.collections.List;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public abstract class User implements Entities {
     private String password;
 
     @Column(name = "is_verified", nullable = false)
-    private boolean isVerified;
+    private boolean isVerified=false;
    
     
 	

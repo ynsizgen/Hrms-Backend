@@ -2,9 +2,11 @@ package project.hrms.business.abstracts;
 
 import java.util.List;
 
+import project.hrms.core.utilities.results.DataResult;
+import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.JobPosition;
 
 public interface JobPositionService {
-	JobPosition addJobPosition(JobPosition jobPosition);
-	List<JobPosition> getAll();
+	Result add(JobPosition jobPosition);
+	DataResult<List<JobPosition>> getAll();
 }

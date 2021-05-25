@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "Employers")
+@Table(name = "employers")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employer extends User implements Entities {

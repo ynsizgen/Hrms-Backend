@@ -1,6 +1,8 @@
 package project.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import project.hrms.entities.abstracts.Entities;
 
 import javax.persistence.*;
@@ -8,7 +10,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "job_positions")
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobPosition implements Entities {
 
     @Id

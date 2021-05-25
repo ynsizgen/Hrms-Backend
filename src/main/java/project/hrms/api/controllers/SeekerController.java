@@ -3,8 +3,6 @@ package project.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,20 +25,16 @@ public class SeekerController {
         this.seekerService = seekerService;
     }
     
+    @PostMapping("/add")
+    public Result add(@RequestBody Seeker seeker){
+        return this.seekerService.add(seeker);
+    }
+    
     @GetMapping("/getAll")
     public DataResult<List<Seeker>> getAll(){
         return this.seekerService.getAll();
     }
 
-    @PostMapping("/add")
-    public Result add(@RequestBody Seeker seeker){
-        return this.seekerService.add(seeker);
-    }
+    
         
-	
-	@PostMapping("/addSeekers")
-	public ResponseEntity<List<Seeker>> addAllSeekers(@RequestBody List<Seeker> seekers){
-		List<Seeker> newSeekers = seekerService.addAllSeekers(seekers);
-		return new ResponseEntity<>(newSeekers, HttpStatus.CREATED);			
-	}
 }

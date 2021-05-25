@@ -1,6 +1,5 @@
 package project.hrms.entities.concretes;
 
-import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "Persons")
+@Table(name = "persons")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person extends User{

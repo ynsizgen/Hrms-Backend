@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "Seekers")
+@Table(name = "seekers")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Seeker extends Person implements Entities {

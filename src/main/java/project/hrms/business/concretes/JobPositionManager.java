@@ -7,8 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.hrms.business.abstracts.JobPositionService;
+import project.hrms.core.utilities.results.DataResult;
+import project.hrms.core.utilities.results.ErrorResult;
+import project.hrms.core.utilities.results.Result;
+import project.hrms.core.utilities.results.SuccessDataResult;
+import project.hrms.core.utilities.results.SuccessResult;
 import project.hrms.dataAccess.abstracts.JobPositionDao;
 import project.hrms.entities.concretes.JobPosition;
+
 
 @Service
 public class JobPositionManager implements JobPositionService{
@@ -24,17 +30,26 @@ public class JobPositionManager implements JobPositionService{
 
 
 	@Override
-	public JobPosition addJobPosition(JobPosition jobPosition) {
-		return this.jobPositionDao.save(jobPosition);
+	public Result add(JobPosition jobPosition) {
+		
+		DataResult<List<JobPosition>> jobPositions = getAll();
+		
+		
+		for (JobPosition newJobPosition : jobPositions.getData()) {
+			if(newJobPosition.getJobPositionName().equals(jobPosition.getJobPositionName())) {
+				return new ErrorResult("Bu jobPosition zaten var!");
+			}
+		}
+
+		this.jobPositionDao.save(jobPosition);
+		return new SuccessResult("JobPosition eklendi");
 	}
 
 
 	@Override
-	public List<JobPosition> getAll() {
-		
-		return this.jobPositionDao.findAll();
-	}
-	
+	public DataResult<List<JobPosition>> getAll() {
 
-	
+		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(), "jobPosition Data listelendi");
+	}
+
 }
