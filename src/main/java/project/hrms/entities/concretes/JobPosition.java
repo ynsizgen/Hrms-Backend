@@ -5,21 +5,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import project.hrms.entities.abstracts.Entities;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Entity
 @Table(name = "job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
 public class JobPosition implements Entities {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "job_position_name", nullable = false)
+    @Column(name = "job_position_name")
     private String jobPositionName;
+    
+    @OneToMany(mappedBy = "jobPosition")
+    private List<Advertisement> advertisements;
 
 }

@@ -8,6 +8,8 @@ import project.hrms.entities.abstracts.Entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @Entity
 @Table(name = "phone_numbers")
@@ -23,4 +25,8 @@ public class PhoneNumber implements Entities{
     private String phoneNumber;
     
     
+//    @ManyToOne()
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    @JsonIgnore
+//    private Employer employer;
 }

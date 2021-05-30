@@ -8,11 +8,14 @@ import project.hrms.entities.abstracts.Entities;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Data
 @Entity
 @Table(name = "employers")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
 public class Employer extends User implements Entities {
 
 	
@@ -23,8 +26,14 @@ public class Employer extends User implements Entities {
     private String website;
     
     @OneToMany(targetEntity = PhoneNumber.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "employer_id", referencedColumnName = "id")
     private List<PhoneNumber> phoneNumbers;
     
+//    @OneToMany( mappedBy = "employer", cascade = CascadeType.ALL, orphanRemoval = false)
+//    //@JoinColumn(referencedColumnName = "id")
+//    private List<PhoneNumber> phoneNumbers;
+    
+    @OneToMany(mappedBy = "employer")
+    private List<Advertisement> advertisements;
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import project.hrms.business.abstracts.EmployerService;
 import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
+import project.hrms.entities.concretes.Advertisement;
 import project.hrms.entities.concretes.Employer;
 
 @RestController
@@ -38,7 +39,5 @@ public class EmployerController {
         return this.employerService.getAll();
     }
 	
-	
-
 	
 }

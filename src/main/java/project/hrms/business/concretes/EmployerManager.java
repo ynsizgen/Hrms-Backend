@@ -13,7 +13,9 @@ import project.hrms.core.utilities.results.ErrorResult;
 import project.hrms.core.utilities.results.Result;
 import project.hrms.core.utilities.results.SuccessDataResult;
 import project.hrms.core.utilities.results.SuccessResult;
+import project.hrms.dataAccess.abstracts.AdvertisementDao;
 import project.hrms.dataAccess.abstracts.EmployerDao;
+import project.hrms.entities.concretes.Advertisement;
 import project.hrms.entities.concretes.Employer;
 
 @Service
@@ -22,14 +24,16 @@ public class EmployerManager implements EmployerService{
 	private EmployerDao employerDao;
 	private EmployerVerificationService employerVerificationService;
 	private MainVerificationService mainVerificationService;
+	private AdvertisementDao advertisementDao;
 	
 	@Autowired
 	public EmployerManager(EmployerDao employerDao, EmployerVerificationService employerVerificationService,
-			MainVerificationService mainVerificationService) {
+			MainVerificationService mainVerificationService, AdvertisementDao advertisementDao) {
 		super();
 		this.employerDao = employerDao;
 		this.employerVerificationService=employerVerificationService;
 		this.mainVerificationService=mainVerificationService;
+		this.advertisementDao=advertisementDao;
 	}
 
 	@Override
@@ -62,6 +66,5 @@ public class EmployerManager implements EmployerService{
 		
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Employerlar listelendi");
 	}
-
 
 }
