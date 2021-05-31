@@ -40,7 +40,7 @@ public class SeekerManager implements SeekerService {
 	@Override
 	public Result add(Seeker seeker) {
 
-		if (seekerDao.findAllByNationalityId(seeker.getNationalityId()).stream().count() != 0 ) {
+		if (seekerDao.findAllByNationalityNumber(seeker.getNationalityNumber()).stream().count() != 0 ) {
 
 			return new ErrorResult("Tckno kullanılıyor");
 

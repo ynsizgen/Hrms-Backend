@@ -17,7 +17,7 @@ public class MernisCheckManagerAdapter implements project.hrms.core.mernis.abstr
 	public boolean userCheck(Seeker seeker) {
 		 try {
 	            return this.kawkpsPublicSoap.TCKimlikNoDogrula(
-	                    Long.parseLong(seeker.getNationalityId()),
+	                    Long.parseLong(seeker.getNationalityNumber()),
 	                    seeker.getFirstName().toUpperCase(new Locale("tr", "TR")),
 	                    seeker.getLastName().toUpperCase(new Locale("tr", "TR")),
 	                    seeker.getDateOfBirth().getYear());

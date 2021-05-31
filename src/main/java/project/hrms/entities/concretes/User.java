@@ -8,9 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import antlr.collections.List;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,16 +27,21 @@ public abstract class User implements Entities {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id",nullable = false, updatable = false)
+	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email")
+	@Email
+	@NotBlank
+	@NotNull
     private String email;
 
-    @Column(name = "password",length = 25, nullable = false)
+    @Column(name = "password")
+    @NotBlank
+	@NotNull
     private String password;
 
-    @Column(name = "is_verified", nullable = false)
+    @Column(name = "is_verified")
     private boolean isVerified=false;
    
     

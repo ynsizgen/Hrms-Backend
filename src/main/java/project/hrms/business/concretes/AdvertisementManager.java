@@ -1,3 +1,4 @@
+
 package project.hrms.business.concretes;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import project.hrms.core.utilities.results.SuccessDataResult;
 import project.hrms.core.utilities.results.SuccessResult;
 import project.hrms.dataAccess.abstracts.AdvertisementDao;
 import project.hrms.entities.concretes.Advertisement;
+import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
 
 
 @Service
@@ -69,20 +71,20 @@ public class AdvertisementManager implements AdvertisementService{
 	}
 
 	@Override
-	public Result getByIdAndEmployerId(int id, int employerId) {
-		Advertisement newAdvertisement = this.advertisementDao.getByIdAndEmployerId(id, employerId);
-		
+	public Result getByAdvertisementIdAndEmployerId(int advertisementId, int employerId) {
+		Advertisement newAdvertisement = this.advertisementDao.getByAdvertisementIdAndEmployerId(advertisementId, employerId);
 		newAdvertisement.setStatus(false);
 		this.advertisementDao.save(newAdvertisement);
 		return new SuccessResult("advertisement made inactive");  
 				
-}
+	}
+
+	@Override
+	public DataResult<List<AdvertisementWithEmployerDto>> getAdvertisementWithEmployerDetails() {
+		return new SuccessDataResult<List<AdvertisementWithEmployerDto>>(this.advertisementDao.getAdvertisementWithEmployerDetails(),"Data listed");
+	}
 	
 
-	
-
-
-	
 	
 
 }

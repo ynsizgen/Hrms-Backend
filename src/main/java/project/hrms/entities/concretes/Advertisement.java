@@ -30,7 +30,7 @@ public class Advertisement implements Entities{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "advertisement_id")
-	private int id;
+	private int advertisementId;
 	
 	@Column(name = "description_entry")
 	private String description;

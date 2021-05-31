@@ -1,8 +1,5 @@
 package project.hrms.api.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,44 +8,34 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
-
-import project.hrms.business.abstracts.EmployerService;
-import project.hrms.core.utilities.results.DataResult;
+import project.hrms.business.abstracts.UserService;
 import project.hrms.core.utilities.results.ErrorDataResult;
+import project.hrms.entities.concretes.User;
 
-import project.hrms.entities.concretes.Employer;
-import project.hrms.entities.dtos.EmployerSaveDto;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/employer")
-public class EmployerController {
+@RequestMapping(value="/api/users")
+class UserController {
 
-	private EmployerService employerService;
-	
+    private final UserService userService;
 
-	@Autowired
-	public EmployerController(EmployerService employerService) {
-		super();
-		this.employerService = employerService;
-		
-	}
-	
-	@PostMapping(value="/add")
-    public ResponseEntity<?> add(@Valid @RequestBody EmployerSaveDto employerSaveDto) {
-
-        return ResponseEntity.ok(this.employerService.add(employerSaveDto));
+    @Autowired
+    public UserController(UserService userService) {
+        super();
+        this.userService = userService;
     }
-	
-	@GetMapping("/getAll")
-    public DataResult<List<Employer>> getAll(){
-        return this.employerService.getAll();
+
+    @PostMapping(value="/add")
+    public ResponseEntity<?> add(@Valid @RequestBody User user) {
+
+        return ResponseEntity.ok(this.userService.add(user)) ;
     }
-	
-	
-	
-	@ExceptionHandler(MethodArgumentNotValidException.class)
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException
             (MethodArgumentNotValidException exceptions){
@@ -58,5 +45,4 @@ public class EmployerController {
         }
         return new ErrorDataResult<Object>(validationErrors,"Doğrulama hataları");
     }
-	
 }

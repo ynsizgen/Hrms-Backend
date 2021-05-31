@@ -10,6 +10,6 @@ import project.hrms.entities.concretes.Staff;
 public interface StaffService {
 	Result add(Staff staff);
 	DataResult<List<Staff>> getAll();
-	Result add(JobPosition jobPosition);
+	
 	
 }

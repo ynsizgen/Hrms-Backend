@@ -38,10 +38,7 @@ public class StaffController {
     public Result add(@RequestBody Staff staff){
         return this.staffService.add(staff);
     }
-	@PostMapping("/addJobPosition")
-    public Result add(@RequestBody JobPosition jobPosition){
-        return this.staffService.add(jobPosition);
-    }
+	
 	
 	
 }

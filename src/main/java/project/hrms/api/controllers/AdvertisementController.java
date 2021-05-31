@@ -14,6 +14,7 @@ import project.hrms.business.abstracts.AdvertisementService;
 import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.Advertisement;
+import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
 
 
 
@@ -45,8 +46,8 @@ public class AdvertisementController {
     }
 	
 	@GetMapping("/changeStatus")
-	public Result changeStatus(@RequestParam int id,@RequestParam boolean status) {
-		return this.advertisementService.changeStatus(id, status);	
+	public Result changeStatus(@RequestParam int advertisementId,@RequestParam boolean status) {
+		return this.advertisementService.changeStatus(advertisementId, status);	
 	}
 	
 	@GetMapping("/getByStatusTrue")
@@ -66,9 +67,14 @@ public class AdvertisementController {
 	}
 
 	
-	@GetMapping("/getByIdAndEmployerId")
-	public Result  getByIdAndEmployerId(@RequestParam int id ,@RequestParam int employerId){
-		return this.advertisementService.getByIdAndEmployerId(id, employerId);	
+	@GetMapping("/getAdvertisementIdByIdAndEmployerId")
+	public Result  getByIdAndEmployerId(@RequestParam int advertisementId ,@RequestParam int employerId){
+		return this.advertisementService.getByAdvertisementIdAndEmployerId(advertisementId, employerId);	
+	}
+	
+	@GetMapping("/getAdvertisementWithEmployerDetails")
+	public DataResult<List<AdvertisementWithEmployerDto>> getAdvertisementWithEmployerDetails(){
+		return this.advertisementService.getAdvertisementWithEmployerDetails();
 	}
 	
 }

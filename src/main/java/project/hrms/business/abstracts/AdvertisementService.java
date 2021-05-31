@@ -5,6 +5,7 @@ import java.util.List;
 import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.Advertisement;
+import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
 
 
 public interface AdvertisementService {
@@ -17,5 +18,9 @@ public interface AdvertisementService {
 	DataResult<List<Advertisement>> getByStatusTrueOrderByCreationDate();
 	DataResult<List<Advertisement>> getByStatusTrueAndEmployerId(int employerId);
 	
-	Result getByIdAndEmployerId(int id ,int employerId);
+	Result getByAdvertisementIdAndEmployerId(int advertisementId ,int employerId);
+	
+	DataResult<List<AdvertisementWithEmployerDto>> getAdvertisementWithEmployerDetails();
+	
+	
 }

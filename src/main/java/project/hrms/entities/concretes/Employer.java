@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import project.hrms.entities.abstracts.Entities;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -18,11 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
 public class Employer extends User implements Entities {
 
-	
-    @Column(name = "employer_name", nullable = false)
+	@NotEmpty(message = "Soyisim bos birakilamaz.")
+	@Size(min=2, max=30)
+    @Column(name = "employer_name")
     private String employerName;
 
-    @Column(name = "employer_website", nullable = false)
+    @Column(name = "employer_website")
     private String website;
     
     @OneToMany(targetEntity = PhoneNumber.class, cascade = CascadeType.ALL)

@@ -8,5 +8,5 @@ import project.hrms.entities.concretes.Seeker;
 
 public interface SeekerDao extends JpaRepository<Seeker,Integer>  {
 	List<Seeker> findAllByEmail(String email);
-	List<Seeker> findAllByNationalityId(String nationalityId);
+	List<Seeker> findAllByNationalityNumber(String nationalityNumber);
 }
