@@ -28,9 +28,7 @@ public class Employer extends User implements Entities {
     @Column(name = "employer_website")
     private String website;
     
-    @OneToMany(targetEntity = PhoneNumber.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "employer_id", referencedColumnName = "id")
-    private List<PhoneNumber> phoneNumbers;
+     
     
 //    @OneToMany( mappedBy = "employer", cascade = CascadeType.ALL, orphanRemoval = false)
 //    //@JoinColumn(referencedColumnName = "id")

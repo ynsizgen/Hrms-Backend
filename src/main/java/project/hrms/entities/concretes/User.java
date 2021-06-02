@@ -26,8 +26,8 @@ import project.hrms.entities.abstracts.Entities;
 public abstract class User implements Entities {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
 	private int id;
 	
 	@Column(name = "email")

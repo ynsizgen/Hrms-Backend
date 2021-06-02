@@ -17,6 +17,8 @@ import project.hrms.core.utilities.results.SuccessDataResult;
 import project.hrms.core.utilities.results.SuccessResult;
 import project.hrms.dataAccess.abstracts.SeekerDao;
 import project.hrms.entities.concretes.Seeker;
+import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
+import project.hrms.entities.dtos.CvWithSeekerDto;
 
 @Service
 public class SeekerManager implements SeekerService {
@@ -61,7 +63,7 @@ public class SeekerManager implements SeekerService {
 			return new ErrorResult("Ad soyad en az 2 haneli olmalı.");
 			
 			//mernis fake or real
-		}else if (!mernisCheckService.userCheck(seeker)) {
+		}else if (!fakeCheckService.userCheck(seeker)) {
 			
 			return new ErrorResult("Mernis onaylamadı.");
 			
@@ -77,5 +79,7 @@ public class SeekerManager implements SeekerService {
 	public DataResult<List<Seeker>> getAll() {
 		return new SuccessDataResult<List<Seeker>>(this.seekerDao.findAll(), "Data listelendi");
 	}
+
+	
 
 }
