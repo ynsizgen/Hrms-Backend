@@ -7,6 +7,7 @@ import project.hrms.core.utilities.results.Result;
 
 import project.hrms.entities.concretes.Cv;
 import project.hrms.entities.concretes.CvSchool;
+import project.hrms.entities.concretes.Seeker;
 import project.hrms.entities.dtos.CvSchoolDto;
 import project.hrms.entities.dtos.CvWithSeekerDto;
 
@@ -17,5 +18,7 @@ public interface CvService {
 	
 	DataResult<List<CvWithSeekerDto>> getCvWithSeekerDetails();
 	
-	DataResult<List<Cv>> getByCvId(int cvId);
+	DataResult<List<Cv>> getBySeekerId(int seekerId);
+	
+	DataResult<Cv> getByCvId(int cvId);	
 }

@@ -14,9 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,14 @@ public class Cv {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cv_id", nullable = false)
 	private int cvId;
+	
+	@JsonIgnore
+	@Column(name= "is_active", columnDefinition = "boolean default true")
+	private boolean isActive = true;
+//	
+//	@JsonIgnore
+//	@Column(name= "created_date", columnDefinition = "Date defult CURRENT_DATE")
+//	private LocalDate createdDate = LocalDate.now();
 	
 	@Column(name = "cv_github")
 	private String cvGithub;
@@ -66,7 +75,13 @@ public class Cv {
     @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
     private List<CvSchool> CvSchools;
 	
+	@OneToOne(targetEntity = CvImage.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
+    private CvImage cvImage;
 	
+	
+//	@OneToOne(mappedBy = "cv",optional = false, fetch = FetchType.LAZY)
+//	private CvImage cvImage;
 	
 
 //	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })

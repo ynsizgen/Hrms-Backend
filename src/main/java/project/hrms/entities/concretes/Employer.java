@@ -31,10 +31,12 @@ public class Employer extends User implements Entities {
      
     
 //    @OneToMany( mappedBy = "employer", cascade = CascadeType.ALL, orphanRemoval = false)
-//    //@JoinColumn(referencedColumnName = "id")
+//    @JoinColumn(referencedColumnName = "id")
 //    private List<PhoneNumber> phoneNumbers;
     
     @OneToMany(mappedBy = "employer")
     private List<Advertisement> advertisements;
+    
+   
 
 }

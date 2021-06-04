@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
@@ -31,9 +32,9 @@ public class Seeker extends User implements Entities {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
     
-
     
     @OneToMany(mappedBy = "seeker")
+    @JsonIgnore
     private List<Cv> cvs;
 
 }

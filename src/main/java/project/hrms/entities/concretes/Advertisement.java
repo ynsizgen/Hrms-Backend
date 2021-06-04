@@ -26,7 +26,6 @@ import project.hrms.entities.abstracts.Entities;
 @NoArgsConstructor
 public class Advertisement implements Entities{
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "advertisement_id")
@@ -53,7 +52,7 @@ public class Advertisement implements Entities{
 	@Column(name = "creationDate")
 	private LocalDate creationDate;
 	
-	//(cascade = CascadeType.ALL)
+	
 	@ManyToOne
 	@JoinColumn(name = "job_position_id", nullable = false)
 	private JobPosition jobPosition;

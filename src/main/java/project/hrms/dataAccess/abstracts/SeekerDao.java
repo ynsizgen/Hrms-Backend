@@ -13,7 +13,6 @@ public interface SeekerDao extends JpaRepository<Seeker,Integer>  {
 	List<Seeker> findAllByEmail(String email);
 	List<Seeker> findAllByNationalityNumber(String nationalityNumber);
 	
-	
-	
+	Seeker getById(int id);
 	
 }

@@ -15,6 +15,7 @@ import project.hrms.dataAccess.abstracts.CvSchoolDao;
 import project.hrms.entities.concretes.Advertisement;
 import project.hrms.entities.concretes.Cv;
 import project.hrms.entities.concretes.CvSchool;
+import project.hrms.entities.concretes.Seeker;
 import project.hrms.entities.dtos.CvSchoolDto;
 import project.hrms.entities.dtos.CvWithSeekerDto;
 
@@ -45,9 +46,14 @@ public class CvManager implements CvService{
 	}
 	
 	@Override
-	public DataResult<List<Cv>> getByCvId(int cvId) {
+	public DataResult<List<Cv>> getBySeekerId(int seekerId) {
 		
-		return new SuccessDataResult<List<Cv>>(this.cvDao.getByCvId(cvId),"Data listelendi");
+		return new SuccessDataResult<List<Cv>>(this.cvDao.getBySeekerId(seekerId),"Data listelendi");
+	}
+
+	@Override
+	public DataResult<Cv> getByCvId(int cvId) {
+		return new SuccessDataResult<Cv>(this.cvDao.getByCvId(cvId));
 	}
 	
 	

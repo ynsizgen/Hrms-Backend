@@ -11,5 +11,5 @@ public interface SeekerService {
     DataResult<List<Seeker>> getAll();
     Result add(Seeker seeker);
     
-    
+    DataResult<Seeker> getById(int id);	
 }

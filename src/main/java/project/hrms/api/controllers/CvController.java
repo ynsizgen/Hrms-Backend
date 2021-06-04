@@ -40,9 +40,9 @@ public class CvController {
 		return this.cvService.getCvWithSeekerDetails();
 	}
 	
-	@GetMapping("/getByCvId")
-    public DataResult<List<Cv>> getByCvId(@RequestParam int cvId) {
-        return this.cvService.getByCvId(cvId);
+	@GetMapping("/getBySeekerId")
+    public DataResult<List<Cv>> getBySeekerId(@RequestParam int seekerId) {
+        return this.cvService.getBySeekerId(seekerId);
     }
 	
 	

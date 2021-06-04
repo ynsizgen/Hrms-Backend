@@ -80,6 +80,11 @@ public class SeekerManager implements SeekerService {
 		return new SuccessDataResult<List<Seeker>>(this.seekerDao.findAll(), "Data listelendi");
 	}
 
+	@Override
+	public DataResult<Seeker> getById(int id) {
+		return new SuccessDataResult<Seeker>(this.seekerDao.getById(id));
 	
+	}
+
 
 }

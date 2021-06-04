@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 
 import project.hrms.entities.concretes.Advertisement;
 import project.hrms.entities.concretes.Cv;
+import project.hrms.entities.concretes.Seeker;
 import project.hrms.entities.dtos.CvWithSeekerDto;
 
 
 public interface CvDao extends JpaRepository<Cv, Integer>{
 	
-	List<Cv> getByCvId(int cvId);
+	List<Cv> getBySeekerId(int seekerId);
 	
 	@Query("Select new project.hrms.entities.dtos.CvWithSeekerDto"
 			+ "(s.id, c.cvId) "
@@ -20,5 +21,8 @@ public interface CvDao extends JpaRepository<Cv, Integer>{
 
 	List<CvWithSeekerDto> getCvWithSeekerDetails();
 	
+	Cv getByCvId(int id);
+	
+
 
 }
