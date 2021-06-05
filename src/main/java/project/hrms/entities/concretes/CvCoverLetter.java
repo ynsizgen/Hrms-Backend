@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -35,8 +36,11 @@ public class CvCoverLetter {
 	@Column(name = "cv_cover_letter_name")
 	private String cvCoverLetterName;
 	
-//	@OneToMany(mappedBy="cvCoverLetter",fetch = FetchType.LAZY)
-//	private List<Cv> cvs;
-//	
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
+    private Cv cv;
+	
+	
 
 }

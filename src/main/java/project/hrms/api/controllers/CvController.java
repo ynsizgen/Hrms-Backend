@@ -15,7 +15,7 @@ import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
 
 import project.hrms.entities.concretes.Cv;
-
+import project.hrms.entities.concretes.CvSchool;
 import project.hrms.entities.dtos.CvWithSeekerDto;
 
 @RestController
@@ -35,8 +35,8 @@ public class CvController {
         return this.cvService.getAll();
     }
 	
-	@GetMapping("/getAdvertisementWithEmployerDetails")
-	public DataResult<List<CvWithSeekerDto>> getAdvertisementWithEmployerDetails(){
+	@GetMapping("/getCvWithSeekerDetails")
+	public DataResult<List<CvWithSeekerDto>> getCvWithSeekerDetails(){
 		return this.cvService.getCvWithSeekerDetails();
 	}
 	
@@ -44,6 +44,5 @@ public class CvController {
     public DataResult<List<Cv>> getBySeekerId(@RequestParam int seekerId) {
         return this.cvService.getBySeekerId(seekerId);
     }
-	
-	
+
 }

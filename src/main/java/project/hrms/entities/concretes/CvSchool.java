@@ -1,6 +1,7 @@
 package project.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -25,12 +29,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "cv_schools")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cvs"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
 public class CvSchool {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cv_school_id", nullable = false)
+	@Column(name = "cv_school_id", nullable = false )
 	private int cvSchoolId;
 	
 	@Column(name = "cv_school_name")
@@ -45,6 +49,8 @@ public class CvSchool {
 	@Column(name = "completion_date")
 	private LocalDate completionDate; 
 	
-//	@OneToMany(mappedBy="cvSchool",fetch = FetchType.LAZY)
-//	private List<Cv> cvs;
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
+    private Cv cv;
 }

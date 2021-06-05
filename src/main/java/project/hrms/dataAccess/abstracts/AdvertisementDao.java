@@ -22,12 +22,10 @@ public interface AdvertisementDao extends JpaRepository<Advertisement, Integer>{
 	
 	
 	@Query("Select new project.hrms.entities.dtos.AdvertisementWithEmployerDto"
-			+ "(a.id, e.employerName, e.website, a.description, a.status, a.creationDate) "
+			+ "(a.id,e.id, e.employerName, e.website, a.description, a.status, a.creationDate) "
 			+ "From Employer e Inner Join e.advertisements a")
  	List<AdvertisementWithEmployerDto> getAdvertisementWithEmployerDetails();
 
-	
-	
 }	
 
 

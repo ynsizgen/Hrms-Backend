@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +43,8 @@ public class CvLanguage{
 	@Column(name = "cv_language_level")
 	private String cvLanguageLevel;
 	
-//	@OneToMany(mappedBy="cvLanguage",fetch = FetchType.LAZY)
-//	private List<Cv> cvs;
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
+    private Cv cv;
 }

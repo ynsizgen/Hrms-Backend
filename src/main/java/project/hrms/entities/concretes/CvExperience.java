@@ -1,6 +1,7 @@
 package project.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -45,6 +49,8 @@ public class CvExperience {
 	@Column(name = "finishing_date")
 	private LocalDate finishingDate;
 	
-//	@OneToMany(mappedBy="cvExperience",fetch = FetchType.LAZY)
-//	private List<Cv> cvs;
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
+    private Cv cv;
 }

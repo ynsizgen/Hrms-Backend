@@ -28,8 +28,5 @@ public class Staff implements Entities {
     @Column(name = "last_name", length = 25, nullable = false)
     private String lastName;
     
-//    @OneToMany(targetEntity = JobPosition.class, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "staff_id", referencedColumnName = "id")
-//    private List<JobPosition> jobPositions;
     
 }

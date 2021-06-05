@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CvSchoolDto {
-	private int cvId;
+	private int id;
 	private int cvSchoolId;
 //	private String cvSchoolName;
 //	private String cvSchoolDepartment;

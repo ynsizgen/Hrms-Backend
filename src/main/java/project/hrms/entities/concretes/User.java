@@ -26,7 +26,7 @@ import project.hrms.entities.abstracts.Entities;
 public abstract class User implements Entities {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	private int id;
 	
@@ -44,6 +44,5 @@ public abstract class User implements Entities {
     @Column(name = "is_verified")
     private boolean isVerified=false;
    
-    
-	
+
 }

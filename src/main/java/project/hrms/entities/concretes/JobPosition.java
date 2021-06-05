@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
@@ -16,17 +17,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
 public class JobPosition implements Entities {
 
-    @Id
-    @Column(name = "id")
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private int id;
 
     @Column(name = "job_position_name")
     private String jobPositionName;
     
-    @OneToMany(mappedBy = "jobPosition")
-    private List<Advertisement> advertisements;
+    @JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "advertisement_id", referencedColumnName = "advertisement_id")
+    private Advertisement advertisement;
 
 }

@@ -2,6 +2,7 @@ package project.hrms.entities.concretes;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,13 +36,12 @@ public class Cv {
 	@Column(name = "cv_id", nullable = false)
 	private int cvId;
 	
-	@JsonIgnore
 	@Column(name= "is_active", columnDefinition = "boolean default true")
 	private boolean isActive = true;
-//	
-//	@JsonIgnore
-//	@Column(name= "created_date", columnDefinition = "Date defult CURRENT_DATE")
-//	private LocalDate createdDate = LocalDate.now();
+	
+	@JsonIgnore
+	@Column(name= "created_date")
+	private LocalDate createdDate = LocalDate.now();
 	
 	@Column(name = "cv_github")
 	private String cvGithub;
@@ -50,9 +50,11 @@ public class Cv {
 	private String cvLinkedin;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "seeker_id")
-	private Seeker seeker;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "id", referencedColumnName = "id")
+    private Seeker seeker;
+	
 	
 	
 	@OneToMany(targetEntity = CvAbility.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -75,34 +77,15 @@ public class Cv {
     @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
     private List<CvSchool> CvSchools;
 	
-	@OneToOne(targetEntity = CvImage.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(targetEntity = CvPhoto.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
-    private CvImage cvImage;
+    private CvPhoto cvPhoto;
 	
-	
-//	@OneToOne(mappedBy = "cv",optional = false, fetch = FetchType.LAZY)
-//	private CvImage cvImage;
 	
 
-//	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-//	@JoinColumn(name="cvAbilityId")
-//	private CvAbility cvAbility;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-//	@JoinColumn(name="cvCoverLetteId")
-//	private CvCoverLetter cvCoverLetter;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-//	@JoinColumn(name="cvExperienceId")
-//	private CvExperience cvExperience;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-//	@JoinColumn(name="cvLanguageId")
-//    private CvLanguage cvLanguage;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE })
-//	@JoinColumn(name="cvSchoolId")
-//    private CvSchool cvSchool;
+	
+
+
 	
 
 

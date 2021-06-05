@@ -20,6 +20,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","cvs"})
 public class Seeker extends User implements Entities {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private int id;
+	
 	@Column(name = "first_name", length = 25, nullable = false)
     private String firstName;
 
@@ -32,9 +37,10 @@ public class Seeker extends User implements Entities {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
     
-    
-    @OneToMany(mappedBy = "seeker")
     @JsonIgnore
-    private List<Cv> cvs;
+    @OneToMany(targetEntity = Cv.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	private List<Cv> cvs;
+
 
 }

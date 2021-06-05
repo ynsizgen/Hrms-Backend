@@ -26,12 +26,12 @@ public class StaffManager implements StaffService {
 	@Override
 	public Result add(Staff staff) {
 		this.staffDao.save(staff);
-		return new SuccessResult("Staff eklendi");
+		return new SuccessResult("Staff added");
 	}
 
 	@Override
 	public DataResult<List<Staff>> getAll() {
-		return new SuccessDataResult<List<Staff>>(this.staffDao.findAll(), "Data listelendi");
+		return new SuccessDataResult<List<Staff>>(this.staffDao.findAll(), "Staves listed");
 	}
 	
 	

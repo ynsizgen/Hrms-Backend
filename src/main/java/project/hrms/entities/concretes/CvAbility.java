@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -28,20 +30,18 @@ import lombok.NoArgsConstructor;
 public class CvAbility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cv_ability_id")
+	@Column(name = "cv_ability_id", nullable = false)
 	private int cvAbilityId;
 	
 	@Column(name = "cv_ability_name")
 	private String cvAbilityName;
 	
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
+    private Cv cv;
 	
 	
 	
-	
-//	@OneToMany(mappedBy="cvAbility",fetch = FetchType.LAZY)
-//	private List<Cv> cvs;
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "cv_id")
-//	private Cv cv;
+
 }

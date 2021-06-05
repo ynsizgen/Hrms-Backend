@@ -37,12 +37,12 @@ public class JobPositionManager implements JobPositionService{
 		
 		for (JobPosition newJobPosition : jobPositions.getData()) {
 			if(newJobPosition.getJobPositionName().equals(jobPosition.getJobPositionName())) {
-				return new ErrorResult("Bu jobPosition zaten var!");
+				return new ErrorResult(" jobPosition is already exist!");
 			}
 		}
 
 		this.jobPositionDao.save(jobPosition);
-		return new SuccessResult("JobPosition eklendi");
+		return new SuccessResult("JobPosition added");
 	}
 
 

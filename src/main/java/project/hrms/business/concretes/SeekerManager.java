@@ -65,19 +65,19 @@ public class SeekerManager implements SeekerService {
 			//mernis fake or real
 		}else if (!fakeCheckService.userCheck(seeker)) {
 			
-			return new ErrorResult("Mernis onaylamadı.");
+			return new ErrorResult("Mernis did not confirm.");
 			
 		} else {
 			
 			this.seekerDao.save(seeker);
-			return new SuccessResult("Seeker eklendi.");	
+			return new SuccessResult("Seeker added.");	
 		}
 
 	}
 
 	@Override
 	public DataResult<List<Seeker>> getAll() {
-		return new SuccessDataResult<List<Seeker>>(this.seekerDao.findAll(), "Data listelendi");
+		return new SuccessDataResult<List<Seeker>>(this.seekerDao.findAll(), "Seeker listed");
 	}
 
 	@Override

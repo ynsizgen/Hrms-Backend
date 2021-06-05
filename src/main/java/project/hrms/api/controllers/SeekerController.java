@@ -14,7 +14,7 @@ import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.Seeker;
 
 @RestController
-@RequestMapping("/api/seeker")
+@RequestMapping("/api/seekers")
 public class SeekerController {
 
     private SeekerService seekerService;

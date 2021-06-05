@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CvWithSeekerDto {
 	private int seekerId;
-	private int cvId;
+	private int id;
 	
 	
 }

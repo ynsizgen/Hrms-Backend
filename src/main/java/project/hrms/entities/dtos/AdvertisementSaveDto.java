@@ -1,7 +1,7 @@
 package project.hrms.entities.dtos;
 
 import java.time.LocalDate;
-
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +20,5 @@ public class AdvertisementSaveDto {
 	private int amountOfPositions;
 	private LocalDate deadline;
 	private boolean status;
-	private LocalDate creationDate;
+	private Date creationDate;
 }

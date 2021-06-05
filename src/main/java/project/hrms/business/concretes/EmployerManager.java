@@ -30,47 +30,47 @@ public class EmployerManager implements EmployerService{
 	
 	
 	
-	@Override
-	public Result add(EmployerSaveDto employerSaveDto) {
-		
-		Employer employer = new Employer();
-		
-		employer.setEmail(employerSaveDto.getEmail());
-		employer.setPassword(employerSaveDto.getPassword());
-		employer.setEmployerName(employerSaveDto.getEmployerName());
-		employer.setWebsite(employerSaveDto.getWebsite());
-		
-		this.employerDao.save(employer);
-		
-		return new SuccessResult("Employer added");
-	}
-	
-	
-	
 //	@Override
-//	public Result add(Employer employer) {
+//	public Result add(EmployerSaveDto employerSaveDto) {
 //		
-//		 if(employerDao.findAllByEmail(employer.getEmail()).stream().count() != 0 ) {
-//			 return new ErrorResult("Bu email kullanılıyor!");
-//			 
-//		 }else if(!mainVerificationService.passwordCheck(employer)) {
-//			return new ErrorResult("Şifre en az 6 karakter olmalı");
-//			
-//		}else if(!mainVerificationService.isEmailValid(employer)) {
-//			return new ErrorResult("Bu Email formatı hatalı");
-//			
-//		}else if(!employerVerificationService.isNameValid(employer)){
-//			return new ErrorResult("Firma adı en az 5 karakterden oluşmalı");
-//			
-//		}else if(!employerVerificationService.isDomainsTrue(employer)) {
-//			return new ErrorResult("Email ile websitesi aynı domaine sahip olmalı");
-//			
-//		}else {
-//			mainVerificationService.verifyEmail(employer);
-//			employerDao.save(employer);
-//			return new SuccessResult("Employer eklendi.");
-//		}
+//		Employer employer = new Employer();
+//		
+//		employer.setEmail(employerSaveDto.getEmail());
+//		employer.setPassword(employerSaveDto.getPassword());
+//		employer.setEmployerName(employerSaveDto.getEmployerName());
+//		employer.setWebsite(employerSaveDto.getWebsite());
+//		
+//		this.employerDao.save(employer);
+//		
+//		return new SuccessResult("Employer added");
 //	}
+	
+	
+	
+	@Override
+	public Result add(Employer employer) {
+		
+		 if(employerDao.findAllByEmail(employer.getEmail()).stream().count() != 0 ) {
+			 return new ErrorResult("email is using!");
+			 
+		 }else if(!mainVerificationService.passwordCheck(employer)) {
+			return new ErrorResult("Şifre en az 6 karakter olmalı");
+			
+		}else if(!mainVerificationService.isEmailValid(employer)) {
+			return new ErrorResult("Bu Email formatı hatalı");
+			
+		}else if(!employerVerificationService.isNameValid(employer)){
+			return new ErrorResult("Firma adı en az 5 karakterden oluşmalı");
+			
+		}else if(!employerVerificationService.isDomainsTrue(employer)) {
+			return new ErrorResult("Email ile websitesi aynı domaine sahip olmalı");
+			
+		}else {
+			mainVerificationService.verifyEmail(employer);
+			employerDao.save(employer);
+			return new SuccessResult("Employer added.");
+		}
+	}
 
 	@Override
 	public DataResult<List<Employer>> getAll() {

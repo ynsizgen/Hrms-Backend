@@ -36,9 +36,9 @@ public class EmployerController {
 	}
 	
 	@PostMapping(value="/add")
-    public ResponseEntity<?> add(@Valid @RequestBody EmployerSaveDto employerSaveDto) {
+    public ResponseEntity<?> add(@Valid @RequestBody Employer employer) {
 
-        return ResponseEntity.ok(this.employerService.add(employerSaveDto));
+        return ResponseEntity.ok(this.employerService.add(employer));
     }
 	
 	@GetMapping("/getAll")

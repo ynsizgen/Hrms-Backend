@@ -1,16 +1,26 @@
 package project.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,7 +34,7 @@ import project.hrms.entities.abstracts.Entities;
 @Table(name = "advertisements")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Advertisement implements Entities{
+public class Advertisement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,20 +59,26 @@ public class Advertisement implements Entities{
 	@Column(name = "status")
 	private boolean status;
 	
+	@CreationTimestamp
 	@Column(name = "creationDate")
-	private LocalDate creationDate;
+	private Date creationDate;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "job_position_id", nullable = false)
-	private JobPosition jobPosition;
-	
-	@ManyToOne
-    @JoinColumn(name = "city_id", nullable = false)
-    private City city;
-
-	@ManyToOne
-    @JoinColumn(name = "employer_id", nullable = false)
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "id", referencedColumnName = "id")
     private Employer employer;
+	
+    @OneToMany(targetEntity = JobPosition.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+   	@JoinColumn(name = "advertisement_id", referencedColumnName = "advertisement_id")
+   	private List<JobPosition> jobPositions;
+	
+    @OneToMany(targetEntity = City.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+   	@JoinColumn(name = "advertisement_id", referencedColumnName = "advertisement_id")
+   	private List<City> cities;
+
+	
+	
+	
+	
+
 
 }

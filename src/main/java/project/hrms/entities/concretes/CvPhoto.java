@@ -19,22 +19,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "cv_image")
+@Table(name = "cv_photos")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CvImage {
+public class CvPhoto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cv_image_id", nullable = false)
-	private int cvImageId;
+	@Column(name = "cv_photo_id", nullable = false)
+	private int cvPhotoId;
 	
 	@Column(name = "url_address")
 	private String urlAddress;
 	
-	
 	@JsonIgnore
-	@OneToOne(optional=false,fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "cv_id", referencedColumnName = "cv_id")
     private Cv cv;
 

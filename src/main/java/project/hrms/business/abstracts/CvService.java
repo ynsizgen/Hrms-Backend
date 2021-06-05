@@ -21,4 +21,5 @@ public interface CvService {
 	DataResult<List<Cv>> getBySeekerId(int seekerId);
 	
 	DataResult<Cv> getByCvId(int cvId);	
+	
 }
