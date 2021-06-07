@@ -44,5 +44,6 @@ class UserController {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
         return new ErrorDataResult<Object>(validationErrors,"Doğrulama hataları");
+        
     }
 }

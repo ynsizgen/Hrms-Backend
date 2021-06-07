@@ -3,6 +3,7 @@ package project.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +16,11 @@ import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
 
 import project.hrms.entities.concretes.Cv;
-import project.hrms.entities.concretes.CvSchool;
 import project.hrms.entities.dtos.CvWithSeekerDto;
 
 @RestController
 @RequestMapping("api/cv")
+@CrossOrigin
 public class CvController {
 	
 	@Autowired

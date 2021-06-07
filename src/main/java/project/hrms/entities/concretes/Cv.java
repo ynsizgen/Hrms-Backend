@@ -1,7 +1,5 @@
 package project.hrms.entities.concretes;
 
-
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,19 +34,19 @@ public class Cv {
 	@Column(name = "cv_id", nullable = false)
 	private int cvId;
 	
+	
 	@Column(name= "is_active", columnDefinition = "boolean default true")
 	private boolean isActive = true;
 	
-	@JsonIgnore
+	
 	@Column(name= "created_date")
-	private LocalDate createdDate = LocalDate.now();
+	private LocalDate creationDate = LocalDate.now();
 	
 	@Column(name = "cv_github")
 	private String cvGithub;
 	
 	@Column(name = "cv_linkedin")
 	private String cvLinkedin;
-	
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)

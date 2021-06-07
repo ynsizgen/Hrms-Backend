@@ -29,6 +29,7 @@ public class CvPhoto {
 	@Column(name = "cv_photo_id", nullable = false)
 	private int cvPhotoId;
 	
+	
 	@Column(name = "url_address")
 	private String urlAddress;
 	

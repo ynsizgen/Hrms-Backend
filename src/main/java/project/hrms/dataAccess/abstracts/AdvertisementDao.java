@@ -4,14 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import project.hrms.core.utilities.results.DataResult;
-import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.Advertisement;
-import project.hrms.entities.dtos.AdvertisementSaveDto;
 import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
 
-import org.springframework.data.domain.Sort;
+
 
 public interface AdvertisementDao extends JpaRepository<Advertisement, Integer>{
 	List<Advertisement> getByEmployerId(int employerId);

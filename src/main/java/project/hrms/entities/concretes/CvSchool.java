@@ -1,8 +1,6 @@
 package project.hrms.entities.concretes;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,15 +35,19 @@ public class CvSchool {
 	@Column(name = "cv_school_id", nullable = false )
 	private int cvSchoolId;
 	
+	@NotBlank(message = "This field is required")
 	@Column(name = "cv_school_name")
 	private String cvSchoolName;
 	
+	@NotBlank(message = "This field is required")
 	@Column(name = "cv_school_department")
 	private String cvSchoolDepartment;
 	
+	@NotBlank(message = "This field is required")
 	@Column(name = "admission_date")
 	private LocalDate admissionDate;
 	
+	@NotBlank(message = "This field is required")
 	@Column(name = "completion_date")
 	private LocalDate completionDate; 
 	

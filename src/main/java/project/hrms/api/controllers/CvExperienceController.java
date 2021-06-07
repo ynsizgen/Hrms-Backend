@@ -27,4 +27,6 @@ public class CvExperienceController {
 	public DataResult<List<CvExperience>> getAllByOrderByFinishingDateDesc(){
 		return this.cvExperienceService.getAllByOrderByFinishingDateDesc();
 	}
+	
+	
 }

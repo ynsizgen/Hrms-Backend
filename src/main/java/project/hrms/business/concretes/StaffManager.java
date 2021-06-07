@@ -10,10 +10,7 @@ import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
 import project.hrms.core.utilities.results.SuccessDataResult;
 import project.hrms.core.utilities.results.SuccessResult;
-import project.hrms.dataAccess.abstracts.JobPositionDao;
 import project.hrms.dataAccess.abstracts.StaffDao;
-import project.hrms.entities.concretes.JobPosition;
-import project.hrms.entities.concretes.Seeker;
 import project.hrms.entities.concretes.Staff;
 
 @Service

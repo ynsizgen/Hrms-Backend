@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import project.hrms.entities.abstracts.Entities;
 
-import java.util.List;
 
 import javax.persistence.*;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Data
 @Entity
@@ -23,6 +23,7 @@ public class JobPosition implements Entities {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private int id;
+	
 
     @Column(name = "job_position_name")
     private String jobPositionName;

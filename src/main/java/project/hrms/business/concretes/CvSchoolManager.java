@@ -25,4 +25,5 @@ public class CvSchoolManager implements CvSchoolService{
 		return new SuccessDataResult<List<CvSchool>>(this.cvSchoolDao.getAllByOrderByCompletionDateDesc(),"Data listed");
 	}
 	
+	
 }

@@ -11,22 +11,21 @@ import project.hrms.core.utilities.results.Result;
 import project.hrms.core.utilities.results.SuccessDataResult;
 import project.hrms.core.utilities.results.SuccessResult;
 import project.hrms.dataAccess.abstracts.CvDao;
-import project.hrms.dataAccess.abstracts.CvSchoolDao;
-import project.hrms.entities.concretes.Advertisement;
+
 import project.hrms.entities.concretes.Cv;
-import project.hrms.entities.concretes.CvSchool;
-import project.hrms.entities.concretes.Seeker;
-import project.hrms.entities.dtos.CvSchoolDto;
+
 import project.hrms.entities.dtos.CvWithSeekerDto;
 
 @Service
 public class CvManager implements CvService{
 	
-	@Autowired
+	
 	private CvDao cvDao;
 
-	
-	
+	@Autowired
+	public CvManager(CvDao cvDao) {
+		this.cvDao=cvDao;
+	}
 
 	
 	@Override

@@ -1,11 +1,10 @@
 package project.hrms.api.controllers;
 
 
+
 import java.util.List;
 
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import project.hrms.business.abstracts.CvPhotoService;
-
 import project.hrms.business.abstracts.SeekerService;
 
 import project.hrms.core.utilities.results.DataResult;
@@ -45,7 +43,6 @@ public class CvPhotoController {
 		Cv cv = new Cv();
 		cv.setCvId(cvId);
 		cvPhoto.setCv(cv);
-	
 		
 		return this.cvPhotoService.add(cvPhoto, file);
 	}
@@ -71,5 +68,6 @@ public class CvPhotoController {
 	public DataResult<CvPhoto> getByCvId(@RequestParam int cvImageId){
 		return this.cvPhotoService.getByCvImageId(cvImageId);
 	}
+	
 	
 }

@@ -14,20 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import project.hrms.entities.abstracts.Entities;
 
 @Data
 @Entity
@@ -41,27 +36,35 @@ public class Advertisement {
 	@Column(name = "advertisement_id")
 	private int advertisementId;
 	
+	@NotBlank(message = "This field is required")
 	@Column(name = "description_entry")
 	private String description;
 	
+	@NotNull(message = "This field is required")
 	@Column(name = "min_salary")
 	private double minSalary;
-	
+
+	@NotNull(message = "This field is required")
 	@Column(name = "max_salary")
 	private double maxSalary;
 	
+	@Min(value = 1, message = "at least 1")
 	@Column(name = "amount_of_positions")
 	private int amountOfPositions;
 	
+	@NotNull(message = "This field is required")
 	@Column(name = "deadline")
 	private LocalDate deadline;
 	
+	
 	@Column(name = "status")
-	private boolean status;
+	private boolean status=true;
+	
 	
 	@CreationTimestamp
 	@Column(name = "creationDate")
 	private Date creationDate;
+	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "id", referencedColumnName = "id")

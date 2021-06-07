@@ -19,7 +19,7 @@ import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.ErrorDataResult;
 
 import project.hrms.entities.concretes.Employer;
-import project.hrms.entities.dtos.EmployerSaveDto;
+
 
 @RestController
 @RequestMapping("/api/employer")
