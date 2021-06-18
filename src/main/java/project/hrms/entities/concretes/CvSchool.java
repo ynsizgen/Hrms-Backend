@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -43,11 +43,11 @@ public class CvSchool {
 	@Column(name = "cv_school_department")
 	private String cvSchoolDepartment;
 	
-	@NotBlank(message = "This field is required")
+	@NotNull(message = "This field is required")
 	@Column(name = "admission_date")
 	private LocalDate admissionDate;
 	
-	@NotBlank(message = "This field is required")
+	@NotNull(message = "This field is required")
 	@Column(name = "completion_date")
 	private LocalDate completionDate; 
 	

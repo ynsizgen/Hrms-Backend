@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.data.domain.Sort;
+
 import project.hrms.business.abstracts.AdvertisementService;
 import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.Result;
@@ -33,6 +33,21 @@ public class AdvertisementManager implements AdvertisementService{
 		this.advertisementDao.save(advertisement);
 		return new SuccessResult("Advertisement added.");
 	}
+	
+	@Override
+	public Result update(Advertisement advertisement) {
+		advertisementDao.save(advertisement);
+
+		return new SuccessResult("Advertisement updated");
+	}
+
+	@Override
+	public Result delete(Advertisement advertisement) {
+		advertisementDao.delete(advertisement);
+
+		return new SuccessResult("Advertisement deleted");
+	}
+	
 	@Override
 	public DataResult<List<Advertisement>> getAll() {
 		

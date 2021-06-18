@@ -7,9 +7,11 @@ import project.hrms.entities.concretes.Seeker;
 
 
 
-public interface SeekerService {    
+public interface SeekerService {   
+
+	Result add(Seeker seeker);
     DataResult<List<Seeker>> getAll();
-    Result add(Seeker seeker);
-    
     DataResult<Seeker> getById(int id);	
+    public Result delete(Seeker seeker);
+    public Result update(Seeker seeker);
 }

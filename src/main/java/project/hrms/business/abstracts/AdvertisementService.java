@@ -10,6 +10,8 @@ import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
 
 public interface AdvertisementService {
 	Result add(Advertisement advertisement);
+	Result update(Advertisement advertisement);
+	Result delete(Advertisement advertisement);
 	DataResult<List<Advertisement>> getAll();
 	Result changeStatus(int id, boolean status);
 	

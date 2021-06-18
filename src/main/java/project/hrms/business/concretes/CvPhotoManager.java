@@ -48,8 +48,8 @@ public class CvPhotoManager implements CvPhotoService{
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.cvPhotoDao.deleteById(id);
+	public Result delete(CvPhoto cvPhoto) {
+		this.cvPhotoDao.delete(cvPhoto);
 		return new SuccessResult("photo deleted");
 	}
 

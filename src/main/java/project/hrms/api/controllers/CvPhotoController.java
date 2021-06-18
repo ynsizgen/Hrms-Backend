@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +27,10 @@ import project.hrms.entities.concretes.Cv;
 import project.hrms.entities.concretes.CvPhoto;
 
 
+
 @RestController
-@RequestMapping("/api/images")
+@RequestMapping("/api/cvPhotos")
+@CrossOrigin
 public class CvPhotoController {
 	private CvPhotoService cvPhotoService;
 	
@@ -46,16 +51,19 @@ public class CvPhotoController {
 		
 		return this.cvPhotoService.add(cvPhoto, file);
 	}
+
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody CvPhoto cvPhoto){
-		return this.cvPhotoService.update(cvPhoto);
-		
+	public ResponseEntity<Result> update(@Valid @RequestBody CvPhoto cvPhoto) {
+		Result result = cvPhotoService.update(cvPhoto);
+
+		return ResponseEntity.ok(result);
 	}
 	
-	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
-		return this.cvPhotoService.delete(id);
-		
+	@DeleteMapping("/delete")
+	public ResponseEntity<Result> delete(@RequestBody CvPhoto cvPhoto) {
+		Result result = cvPhotoService.delete(cvPhoto);
+
+		return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("/getall")

@@ -8,4 +8,5 @@ import project.hrms.entities.concretes.CvExperience;
 
 public interface CvExperienceDao extends JpaRepository<CvExperience, Integer>{
 	List<CvExperience> getAllByOrderByFinishingDateDesc();
+	CvExperience getByCvExperienceId(int id);
 }

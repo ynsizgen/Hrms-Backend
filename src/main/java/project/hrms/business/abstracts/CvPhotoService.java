@@ -11,7 +11,7 @@ import project.hrms.entities.concretes.CvPhoto;
 public interface CvPhotoService {
 	Result add(CvPhoto cvPhoto, MultipartFile imageFile);
 	Result update(CvPhoto cvPhoto);
-	Result delete(int id);
+	Result delete(CvPhoto cvPhoto);
 	DataResult<CvPhoto> getByCvImageId(int cvImageId);	
 	DataResult<List<CvPhoto>> getAll();
 	

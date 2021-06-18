@@ -8,4 +8,5 @@ import project.hrms.entities.concretes.CvSchool;
 
 public interface CvSchoolDao extends JpaRepository<CvSchool, Integer> {
 	List<CvSchool> getAllByOrderByCompletionDateDesc();
+	CvSchool getByCvSchoolId(int id);
 }

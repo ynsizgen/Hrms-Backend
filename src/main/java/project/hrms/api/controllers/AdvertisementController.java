@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +33,7 @@ import project.hrms.entities.dtos.AdvertisementWithEmployerDto;
 
 @RestController
 @RequestMapping("api/advertisemenent")
+@CrossOrigin
 public class AdvertisementController {
 	
 	private AdvertisementService advertisementService;
@@ -44,6 +47,20 @@ public class AdvertisementController {
 	@PostMapping("/add")
 	public ResponseEntity<?> add(@Valid @RequestBody Advertisement advertisement) {
 		return ResponseEntity.ok(this.advertisementService.add(advertisement));
+	}
+	
+	@PostMapping("/update")
+	public ResponseEntity<Result> update(@Valid @RequestBody Advertisement advertisement) {
+		final Result result = advertisementService.update(advertisement);
+
+		return ResponseEntity.ok(result);
+	}
+    
+    @DeleteMapping("/delete")
+	public ResponseEntity<Result> delete(@RequestBody Advertisement advertisement) {
+		final Result result = advertisementService.delete(advertisement);
+
+		return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("/getAll")

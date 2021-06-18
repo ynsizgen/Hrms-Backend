@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import project.hrms.business.abstracts.EmployerService;
 import project.hrms.core.utilities.results.DataResult;
 import project.hrms.core.utilities.results.ErrorDataResult;
-
+import project.hrms.core.utilities.results.Result;
 import project.hrms.entities.concretes.Employer;
 
 
@@ -45,6 +45,26 @@ public class EmployerController {
     public DataResult<List<Employer>> getAll(){
         return this.employerService.getAll();
     }
+	
+	@GetMapping("/getById")
+    public DataResult<Employer> getById(@RequestParam int employerId) {
+        return this.employerService.getById(employerId);
+    }
+    
+    
+    @PostMapping("/update")
+	public ResponseEntity<Result> update(@Valid @RequestBody Employer employer) {
+		final Result result = employerService.update(employer);
+
+		return ResponseEntity.ok(result);
+	}
+    
+    @DeleteMapping("/delete")
+	public ResponseEntity<Result> delete(@RequestBody Employer employer) {
+		final Result result = employerService.delete(employer);
+
+		return ResponseEntity.ok(result);
+	}
 	
 	
 	

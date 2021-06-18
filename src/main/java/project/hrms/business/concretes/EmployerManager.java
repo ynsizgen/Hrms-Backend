@@ -15,6 +15,7 @@ import project.hrms.core.utilities.results.SuccessResult;
 
 import project.hrms.dataAccess.abstracts.EmployerDao;
 import project.hrms.entities.concretes.Employer;
+import project.hrms.entities.concretes.Seeker;
 
 
 @Service
@@ -61,16 +62,31 @@ public class EmployerManager implements EmployerService{
 			return new SuccessResult("Employer added.");
 		}
 	}
+	
+	@Override
+	public Result update(Employer employer) {
+		employerDao.save(employer);
+
+		return new SuccessResult("Employer updated");
+	}
+
+	
+	@Override
+	public Result delete(Employer employer) {
+		employerDao.delete(employer);
+
+		return new SuccessResult("Employer deleted");
+	}
 
 	@Override
 	public DataResult<List<Employer>> getAll() {
 		
-		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Employerlar listelendi");
+		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Employer listed");
 	}
 	
 	@Override
-    public DataResult<Employer> getByEmail(String email) {
-        return new SuccessDataResult<Employer>(this.employerDao.getByEmail(email),"Kullanıcı bulundu");
+    public DataResult<Employer> getById(int employerId) {
+        return new SuccessDataResult<Employer>(this.employerDao.getById(employerId),"Employer found");
     }
 
 }

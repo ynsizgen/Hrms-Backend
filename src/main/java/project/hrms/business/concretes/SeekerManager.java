@@ -57,6 +57,23 @@ public class SeekerManager implements SeekerService {
 		}
 
 	}
+	
+	@Override
+	public Result update(Seeker seeker) {
+		this.seekerDao.save(seeker);
+
+		return new SuccessResult("Seeker updated");
+	}
+
+	
+	@Override
+	public Result delete(Seeker seeker) {
+		this.seekerDao.delete(seeker);
+
+		return new SuccessResult("Seeker deleted");
+	}
+	
+	
 
 	@Override
 	public DataResult<List<Seeker>> getAll() {
@@ -66,8 +83,6 @@ public class SeekerManager implements SeekerService {
 	@Override
 	public DataResult<Seeker> getById(int id) {
 		return new SuccessDataResult<Seeker>(this.seekerDao.getById(id));
-	
 	}
-
-
+	
 }
